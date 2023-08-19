@@ -1,0 +1,12 @@
+# Ignore all
+*
+
+# Uningnore all files with file extensions
+!*.*
+
+# Uningnore all with dirs
+!*/
+
+# Uningnore build files
+!Makefile
+!makefile
