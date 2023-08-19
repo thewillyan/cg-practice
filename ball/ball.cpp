@@ -107,8 +107,6 @@ void raycasting() {
   glClearColor(r, g, b, 0);
   glClear(GL_COLOR_BUFFER_BIT);
 
-  int delta_x = HEIGHT / 500;
-  int delta_y = HEIGHT / 500;
   for (int i = 0; i < HEIGHT; i++) {
     for (int j = 0; j < WIDTH; j++) {
       Point source = Point();
