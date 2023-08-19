@@ -1,2 +1,5 @@
+CXX = clang++
+CXXFLAGS = -lGL -lglut
+
 main: ball.cpp
-	g++ -lGL -lglut ./ball.cpp -o ball
+	$(CXX) $(CXXFLAGS) ./ball.cpp -o ball
