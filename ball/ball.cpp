@@ -4,7 +4,7 @@
 // window constants
 const int WIDTH = 500;
 const int HEIGHT = 500;
-GLubyte *PixelBuffer = new GLubyte[WIDTH * HEIGHT * 3];
+static GLubyte *PixelBuffer = new GLubyte[WIDTH * HEIGHT * 3];
 
 // circle constants
 const int CENTER_X = WIDTH / 2;
@@ -27,27 +27,22 @@ public:
   int y;
   int z;
 
-  Vec(int x, int y, int z) {
-    this->x = x;
-    this->y = y;
-    this->z = z;
+  Vec(int x_axis, int y_axis, int z_axis) {
+    x = x_axis;
+    y = y_axis;
+    z = z_axis;
   }
 
   int mul(const Vec &other) {
-    int x = this->x * other.x;
-    int y = this->y * other.y;
-    int z = this->z * other.z;
-    return x + y + z;
+    return (x * other.x) + (y * other.y) + (z * other.z);
   }
 
-  Vec div(int k) {
-    int x = this->x / k;
-    int y = this->y / k;
-    int z = this->z / k;
-    return Vec(x, y, z);
-  }
+  Vec div(int k) { return Vec(x / k, y / k, z / k); }
 
-  int size() { return std::sqrt(this->mul(*this)); }
+  int size() {
+    double s = std::sqrt(this->mul(*this));
+    return static_cast<int>(s);
+  }
 
   Vec norm() { return (this->div(this->size())); }
 };
@@ -58,25 +53,27 @@ public:
   int y;
   int z;
 
-  Point(int x, int y, int z) {
-    this->x = x;
-    this->y = y;
-    this->z = z;
+  Point(int x_axis, int y_axis, int z_axis) {
+    x = x_axis;
+    y = y_axis;
+    z = z_axis;
   }
 
   Point() {
-    this->x = 0;
-    this->y = 0;
-    this->z = 0;
+    x = 0;
+    y = 0;
+    z = 0;
   }
 
   Vec sub(const Point &other) {
-    int x = this->x - other.x;
-    int y = this->y - other.y;
-    int z = this->z - other.z;
-    return Vec(x, y, z);
+    return Vec(x - other.x, y - other.y, z - other.z);
   }
 };
+
+// function prototypes
+void draw_pixel(Point, Point);
+void raycasting(void);
+void handle_input(unsigned char, int, int);
 
 void draw_pixel(Point s, Point d) {
   Point c = Point(CENTER_X, CENTER_Y, CENTER_Z);
@@ -101,9 +98,9 @@ void draw_pixel(Point s, Point d) {
 }
 
 void raycasting() {
-  float r = static_cast<float>(BG_R) / 255.0;
-  float g = static_cast<float>(BG_G) / 255.0;
-  float b = static_cast<float>(BG_B) / 255.0;
+  float r = static_cast<float>(BG_R) / 255;
+  float g = static_cast<float>(BG_G) / 255;
+  float b = static_cast<float>(BG_B) / 255;
   glClearColor(r, g, b, 0);
   glClear(GL_COLOR_BUFFER_BIT);
 
@@ -119,7 +116,7 @@ void raycasting() {
   glFlush();
 }
 
-void handle_input(unsigned char key, int mouse_x, int mouse_y) {
+void handle_input(unsigned char key, int, int) {
   if (key == 'q' || key == 'Q')
     exit(0);
 }
