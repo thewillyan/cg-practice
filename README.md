@@ -12,7 +12,7 @@ exercises.
 
 Dependencies:
 
-- clang++ / g++ (Compiler)
+- clang++ / g++ (compiler)
 - Mesa (openGL)
 - freeglut (glut)
 
@@ -22,7 +22,7 @@ To build a project with `clang++` compiler execute the following command:
 make
 ```
 
-To build a project with `g++` compiler run the following command:
+To build a project with `g++` compiler run:
 
 ```sh
 make CXX=g++
