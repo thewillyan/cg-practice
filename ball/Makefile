@@ -1,5 +1,5 @@
 CXX = clang++
-CXXFLAGS = -lGL -lglut
+CXXFLAGS = -Weverything  -Wno-global-constructors
 
 main: ball.cpp
-	$(CXX) $(CXXFLAGS) ./ball.cpp -o ball
+	$(CXX) $(CXXFLAGS) -lGL -lglut ./ball.cpp -o ball
