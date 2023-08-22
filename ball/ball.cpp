@@ -9,11 +9,11 @@ static GLubyte *PixelBuffer = new GLubyte[WIDTH * HEIGHT * 3];
 // circle constants
 const int CENTER_X = 0;
 const int CENTER_Y = 0;
-const int CENTER_Z = -10;
+const int CENTER_Z = -50;
 const int RADIUS = 200;
 
 // canvas constants
-const int CANVAS_DIST = -50;
+const int CANVAS_DIST = -30;
 const int Y_MAX = HEIGHT / 2;
 const int Y_MIN = -Y_MAX;
 const int X_MAX = WIDTH / 2;
